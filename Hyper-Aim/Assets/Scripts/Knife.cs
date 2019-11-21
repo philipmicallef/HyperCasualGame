@@ -17,10 +17,19 @@ private float _nextFire = -2.0f;
 [SerializeField]
 private int _lives = 3;
 
+private Rigidbody2D _rigidbody;
+
+void Start()
+{
+    _rigidbody = GetComponent<Rigidbody2D>();
+}
+
 
     // Update is called once per frame
     void Update()
     {
+
+
         // HELP ****************
         //   V
 
@@ -28,7 +37,9 @@ private int _lives = 3;
         if(Input.GetKey(KeyCode.Space) && Time.time > _nextFire)
         {
             // Making Knife move
-            transform.Translate (Vector3.up * _speed * Time.deltaTime);
+            _rigidbody.AddForce(Vector2.up * _speed, ForceMode2D.Impulse);
+            
+            //CREATE THROW CLASS
         }
         // If knife hits mark
 
@@ -38,23 +49,41 @@ private int _lives = 3;
 
     }
 
+    public void Throw()
+    {
+
+    } 
+
     public void Damage()
     {
         
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag != "Target")
+        if (other.gameObject.name == "Spin")
         {
-            Knife knife = other.GetComponent<Knife>();
-
-            if(knife !=null)
-            {
-                knife.Damage();
-            }
-            Destroy(this.gameObject);
+            _rigidbody.isKinematic = true;
+            transform.SetParent(other.transform);
         }
+
+        if (other.gameObject.name == "Target")
+        {
+            _rigidbody.isKinematic = true;
+            transform.SetParent(other.transform);
+        }
+
+        // RE-WORK IF STATEMENT
+        // if(other.gameObject.tag != "Target")
+        // {
+        //     Knife knife = other.GetComponent<Knife>();
+
+        //     if(knife !=null)
+        //     {
+        //         knife.Damage();
+        //     }
+        //     Destroy(this.gameObject);
+        // }
     }
 
 

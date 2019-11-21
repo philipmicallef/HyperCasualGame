@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Knife.cs" />
+     <Compile Include="Assets\Scripts\SpinWheel.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>/Users/philipmicallef/Documents/MCAST 2019 - 2020/Game Engines/HyperCasual/Hyper-Aim/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
