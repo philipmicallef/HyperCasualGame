@@ -44,3 +44,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Missile
+    uniqueID: 853870027
+    locked: 0
+  - name: PLanet
+    uniqueID: 212580299
+    locked: 0

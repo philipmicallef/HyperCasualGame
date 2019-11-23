@@ -17,6 +17,9 @@ private float _nextFire = -2.0f;
 [SerializeField]
 private int _lives = 3;
 
+[SerializeField]
+private int _score = 0;
+
 private Rigidbody2D _rigidbody;
 
 void Start()
@@ -29,34 +32,13 @@ void Start()
     void Update()
     {
 
-
-        // HELP ****************
-        //   V
-
         // If User taps / presses button
         if(Input.GetKey(KeyCode.Space) && Time.time > _nextFire)
         {
             // Making Knife move
             _rigidbody.AddForce(Vector2.up * _speed, ForceMode2D.Impulse);
             
-            //CREATE THROW CLASS
         }
-        // If knife hits mark
-
-        // score 1 point
-        // else
-        // remove 1 life
-
-    }
-
-    public void Throw()
-    {
-
-    } 
-
-    public void Damage()
-    {
-        
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -65,26 +47,32 @@ void Start()
         {
             _rigidbody.isKinematic = true;
             transform.SetParent(other.transform);
+
+            _lives--;
+            //Spwan next missile
+            // if life = 0, Game Over
         }
 
         if (other.gameObject.name == "Target")
         {
             _rigidbody.isKinematic = true;
             transform.SetParent(other.transform);
+
+            _score++;
+
+            // Destroy Missile
+            Destroy(this.gameObject);
+
+            // Destroy Target
+            Destroy(other.gameObject);
+
+            // Spwan next Missile
+            // if score = 1 , next level
         }
 
-        // RE-WORK IF STATEMENT
-        // if(other.gameObject.tag != "Target")
-        // {
-        //     Knife knife = other.GetComponent<Knife>();
-
-        //     if(knife !=null)
-        //     {
-        //         knife.Damage();
-        //     }
-        //     Destroy(this.gameObject);
-        // }
     }
+
+    //Spwan New Missile Function()
 
 
 }
