@@ -38,6 +38,7 @@ void Start()
             // Making Knife move
             _rigidbody.AddForce(Vector2.up * _speed, ForceMode2D.Impulse);
             
+            GameController.Instance.GameUI.DecrementDisplyedMissileCount();
         }
     }
 
@@ -51,14 +52,24 @@ void Start()
             _lives--;
             //Spwan next missile
             // if life = 0, Game Over
+
+            if(_lives <= 0)
+            {
+                GameController.Instance.StartGameOverSequence(false);
+            }
+
         }
 
         if (other.gameObject.name == "Target")
         {
+            GetComponent<ParticleSystem>().Play();
+
             _rigidbody.isKinematic = true;
             transform.SetParent(other.transform);
 
             _score++;
+
+            GameController.Instance.OnSuccessfulMissileHit();
 
             // Destroy Missile
             Destroy(this.gameObject);
