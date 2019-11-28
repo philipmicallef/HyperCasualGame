@@ -37,6 +37,7 @@ public class GameController : MonoBehaviour
         if(missileCount > 0)
         {
             SpawnMissile();
+           // SceneManager.LoadScene("Level2");
         }
         else 
         {
