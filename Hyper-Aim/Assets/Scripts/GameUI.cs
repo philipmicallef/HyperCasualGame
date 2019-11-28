@@ -36,6 +36,4 @@ public class GameUI : MonoBehaviour
     {
         panelMissiles.transform.GetChild(missileIconIndexToChange++).GetComponent<Image>().color = usedIconMissileColor;
     }
-    
-
 }

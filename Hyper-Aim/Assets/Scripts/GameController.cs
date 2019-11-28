@@ -12,10 +12,11 @@ public class GameController : MonoBehaviour
     private int missileCount;
 
     [Header("Missile Spawning")]
-    private Vector2 missileSpawnPosition;
-
     [SerializeField]
     private GameObject missileObject;
+
+    [SerializeField]
+    private Transform spawnPoint;
 
     public GameUI GameUI { get; private set; }
 
@@ -46,7 +47,7 @@ public class GameController : MonoBehaviour
     private void SpawnMissile()
     {
         missileCount--;
-        Instantiate(missileObject, missileSpawnPosition, Quaternion.identity);
+        Instantiate(missileObject, spawnPoint.position, Quaternion.identity);
     }
 
     public void StartGameOverSequence(bool win)
