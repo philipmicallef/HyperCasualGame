@@ -6,8 +6,6 @@ public class SpinWheel : MonoBehaviour
 {
 public float degreesPerSec = 100f;
 
-
-
     // Update is called once per frame
     void Update()
     {

@@ -62,7 +62,7 @@ void Awake()
         {
             // GetComponent<ParticleSystem>().Play();
 
-            _score++;
+            
 
             //--------------------------- > Instantiate.ParticleSystem();
 
